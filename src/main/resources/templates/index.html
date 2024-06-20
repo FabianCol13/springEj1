@@ -1,0 +1,50 @@
+
+<html xmlns:th="https://www.thymeleaf.org/">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+
+        <h1>Lista de Usuarios</h1>
+        <a th:href="@{/agregar}">Crear Usuario</a>
+        <div th:if="${userList != null and !userList.empty}">
+            <table border="1">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Apellido</th>
+                        <th>Telefono</th>
+                        <th>Email</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="user : ${userList}">
+                        <td th:text="${user.nameUser}"></td>
+                        <td th:text="${user.lastnameUser}"></td>
+                        <td th:text="${user.phoneUser}"></td>
+                        <td th:text="${user.emailUser}"></td>
+                        <td>
+                            <!-- Opcion 1 -->
+                            <a th:href="@{/editar/} + ${user.idUser}" th:text="Editar" /> 
+                            <!-- Opcion 2 QueryParameter -->
+                            <!--a th:href="@{/editar(idUser=${user.idUser})}" th:text="Editar" /--> 
+
+                            <!-- Opcion 1 -->
+                            <!--a th:href="@{/eliminar/} + ${user.idUser}" th:text="Eliminar" /--> 
+                            <!-- Opcion 2 QueryParameter -->
+                            <a th:href="@{/eliminar(idUser=${user.idUser})}" th:text="Eliminar" /> 
+
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div th:if="${userList == null or userList.empty}">
+            Lista vacia
+        </div>
+
+    </body>
+</html>
