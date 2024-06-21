@@ -7,7 +7,7 @@
     </head>
     <body>
 
-        <h1>Lista de Usuarios</h1>
+        <header th:replace="plantilla/plantilla::header" />
         <a th:href="@{/agregar}">Crear Usuario</a>
         <div th:if="${userList != null and !userList.empty}">
             <table border="1">
@@ -45,6 +45,6 @@
         <div th:if="${userList == null or userList.empty}">
             Lista vacia
         </div>
-
+ <footer th:replace="plantilla/plantilla::footer" />
     </body>
 </html>
